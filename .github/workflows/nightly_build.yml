@@ -3,6 +3,7 @@ name: Nightly Build
 on:
   schedule:
     - cron: "0 0 * * *" # this runs the workflow every night at midnight
+  workflow_dispatch: # allow manual triggering of workflow (for testing purposes)
 
 jobs:
   build:
