@@ -1,3 +1,4 @@
+#pragma region Includes
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,13 +6,15 @@
 #include <ogcsys.h>
 #include <gccore.h>
 #include <wiiuse/wpad.h>
+#pragma endregion
 
+#pragma region Setup
 static u32 *xfb;
 static GXRModeObj *rmode;
 
 void Initialize()
 {
-	VIDEO_Init();
+	VIDEO_Init(); // Initialize video
 
 	rmode = VIDEO_GetPreferredMode(NULL);
 
@@ -27,9 +30,11 @@ void Initialize()
 		VIDEO_WaitVSync();
 }
 
+#pragma endregion
+
 int main()
 {
-	Initialize();
-	SYS_ResetSystem(SYS_POWEROFF_STANDBY, 0, 0);
-	return 0;
+	Initialize();								 // Run initialize function
+	SYS_ResetSystem(SYS_POWEROFF_STANDBY, 0, 0); // Power Wii off
+	return 0;									 // Exit with code 0
 }
