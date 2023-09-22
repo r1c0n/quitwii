@@ -15,7 +15,7 @@ include $(DEVKITPPC)/wii_rules
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
-TARGET		:=	$(notdir $(CURDIR))
+TARGET		:=	boot
 BUILD		:=	build
 SOURCES		:=	source
 DATA		:=	data  
@@ -102,7 +102,16 @@ $(BUILD):
 #---------------------------------------------------------------------------------
 clean:
 	@echo clean ...
-	@rm -fr $(BUILD) $(OUTPUT).elf $(OUTPUT).dol
+	@rm -fr $(BUILD) pkg $(OUTPUT).elf $(OUTPUT).dol
+
+#---------------------------------------------------------------------------------
+pkg:
+	@echo packaging ...
+	@mkdir -p pkg
+	@cp $(OUTPUT).dol pkg/boot.dol
+	@cp meta.xml pkg/meta.xml
+	@tar -zcvf pkg/quitwii.tar.gz -C pkg boot.dol meta.xml
+	@echo "Packaging completed!"
 
 #---------------------------------------------------------------------------------
 else
