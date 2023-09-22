@@ -15,7 +15,9 @@ jobs:
 
       - name: Set up devkitpro
         run: |
-          sudo pacman -S devkitpro-pacman
+          wget https://apt.devkitpro.org/install-devkitpro-pacman
+          chmod +x ./install-devkitpro-pacman
+          sudo ./install-devkitpro-pacman
           sudo dkp-pacman -S wii-dev
           sudo dkp-pacman -S devkitPPC
           sudo dkp-pacman -S libogc
