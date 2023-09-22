@@ -5,3 +5,7 @@ This homebrew app powers your Wii completely off, bypassing sleep mode. This is 
 ## Build
 
 To build quitwii, run make in the root directory. Ensure you have devkitpro installed.
+
+## License
+
+quitwii uses the MIT License, seen [here](./LICENSE).
