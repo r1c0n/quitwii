@@ -1,0 +1,62 @@
+name: Nightly Build
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # this runs the workflow every night at midnight
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up devkitpro
+        run: |
+          sudo (dkp-)pacman -S wii-dev
+          sudo pacman -S devkitpro-pacman
+          sudo dkp-pacman -S devkitPPC
+          sudo dkp-pacman -S libogc
+          sudo dkp-pacman -S wiiuse
+          sudo dkp-pacman -S bte
+          sudo dkp-pacman -S ogc
+          sudo dkp-pacman -S wiiuse -S bte -S ogc
+          export DEVKITPPC=/opt/devkitpro/devkitPPC
+          echo "export DEVKITPPC=/opt/devkitpro/devkitPPC" >> $GITHUB_ENV
+
+      - name: Build
+        run: make
+
+      - name: Archive Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: build
+
+      - name: Create Nightly Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly-$(date +"%Y-%m-%d")
+          release_name: Nightly Build $(date +"%Y-%m-%d")
+          draft: false
+          prerelease: true
+
+      - name: Package Nightly Release
+        run: make pkg
+
+      - name: Move to pkg directory
+        run: cd pkg
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./quitwii.tar.gz
+          asset_name: quitwii.tar.gz
+          asset_content_type: application/gzip
