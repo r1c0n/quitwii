@@ -4,7 +4,7 @@
 	<version>1.0</version>
 	<release_date>20230903000000</release_date>
 	<coder>OfficialB</coder>
-	<short_description>Shuts down your wii</short_description>
-	<long_description>Shuts down your wii without going into sleep mode.
+	<short_description>Powers off Wii &amp; bypasses sleep mode</short_description>
+	<long_description>Powers off the Wii completely without going into sleep mode.
 </long_description>
 </app>
