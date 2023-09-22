@@ -15,8 +15,8 @@ jobs:
 
       - name: Set up devkitpro
         run: |
-          sudo (dkp-)pacman -S wii-dev
           sudo pacman -S devkitpro-pacman
+          sudo dkp-pacman -S wii-dev
           sudo dkp-pacman -S devkitPPC
           sudo dkp-pacman -S libogc
           sudo dkp-pacman -S wiiuse
