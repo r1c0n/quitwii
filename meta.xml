@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1">
+	<name>QuitWii</name>
+	<version>1.0</version>
+	<release_date>20230903000000</release_date>
+	<coder>OfficialB</coder>
+	<short_description>Shuts down your wii</short_description>
+	<long_description>Shuts down your wii without going into sleep mode.
+</long_description>
+</app>
