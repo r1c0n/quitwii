@@ -1,4 +1,8 @@
+# Related to building quitwii
 build
-.vscode
+pkg
 *.elf
 *.dol
+
+# IDE specific settings
+.vscode
