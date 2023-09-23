@@ -107,10 +107,10 @@ clean:
 #---------------------------------------------------------------------------------
 pkg:
 	@echo packaging ...
-	@mkdir -p pkg
-	@cp $(OUTPUT).dol pkg/boot.dol
-	@cp meta.xml pkg/meta.xml
-	@tar -zcvf pkg/quitwii.tar.gz -C pkg boot.dol meta.xml
+	@mkdir -p pkg/apps/quitwii
+	@cp $(OUTPUT).dol pkg/apps/quitwii/boot.dol
+	@cp meta.xml pkg/apps/quitwii/meta.xml
+	@tar -zcvf pkg/quitwii.tar.gz -C pkg apps
 	@echo "Packaging completed!"
 
 #---------------------------------------------------------------------------------
